@@ -1,8 +1,16 @@
 pipeline {
     agent any
 
+    tools {
+        // ต้องมี Jenkins tool config ชื่อว่า "Chrome"
+        // ต้องมี Jenkins tool config ชื่อว่า "ChromeDriver"
+        // ตั้งชื่อใน Global Tool Configuration ให้ตรงกับชื่อที่เรียก
+        chrome 'Chrome'
+        chromedriver 'ChromeDriver'
+    }
+
     environment {
-        VENV = ".venv"
+        ROBOT_OPTIONS = '--variable BROWSER:chrome --variable HEADLESS:True'
     }
 
     stages {
@@ -15,8 +23,9 @@ pipeline {
         stage('Setup Python & Install Dependencies') {
             steps {
                 bat '''
-                    python -m venv %VENV%
-                    call %VENV%\\Scripts\\activate.bat
+                    python -m venv .venv
+                    call .venv\\Scripts\\activate.bat
+                    pip install --upgrade pip
                     pip install -r requirements.txt
                 '''
             }
@@ -25,15 +34,21 @@ pipeline {
         stage('Run Robot Tests') {
             steps {
                 bat '''
-                    call %VENV%\\Scripts\\activate.bat
-                    robot -d results tests/
+                    call .venv\\Scripts\\activate.bat
+                    robot --outputdir results %ROBOT_OPTIONS% tests/
                 '''
             }
         }
 
         stage('Publish Results') {
             steps {
-                robot outputPath: 'results'
+                publishHTML (target: [
+                    reportDir: 'results',
+                    reportFiles: 'report.html',
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportName: "Robot Report"
+                ])
             }
         }
     }
