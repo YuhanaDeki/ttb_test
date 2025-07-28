@@ -1,16 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        // ต้องมี Jenkins tool config ชื่อว่า "Chrome"
-        // ต้องมี Jenkins tool config ชื่อว่า "ChromeDriver"
-        // ตั้งชื่อใน Global Tool Configuration ให้ตรงกับชื่อที่เรียก
-        chrome 'Chrome'
-        chromedriver 'ChromeDriver'
-    }
-
     environment {
         ROBOT_OPTIONS = '--variable BROWSER:chrome --variable HEADLESS:True'
+        PATH = "${env.WORKSPACE}\\chromedriver;${env.PATH}"
     }
 
     stages {
@@ -41,13 +34,16 @@ pipeline {
         }
 
         stage('Publish Results') {
+            when {
+                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+            }
             steps {
                 publishHTML (target: [
                     reportDir: 'results',
                     reportFiles: 'report.html',
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportName: "Robot Report"
+                    reportName: "Robot Test Report"
                 ])
             }
         }
@@ -55,7 +51,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'results/**/*.*', fingerprint: true
+            archiveArtifacts artifacts: 'results/*.html', fingerprint: true
         }
     }
 }
