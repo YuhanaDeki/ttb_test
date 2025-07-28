@@ -33,10 +33,7 @@ pipeline {
             }
         }
 
-        stage('Publish Results') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
+        stage('Publish Results') {           
             steps {
                 publishHTML (target: [
                     reportDir: 'results',
