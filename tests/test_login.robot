@@ -13,7 +13,7 @@ Login Success
 
 Login Failed - Password Incorrect
     Input Credentials And Submit    tomsmith    Password! 
-    Flash Message Should Contain   Your password is invalid!
+    Flash Message Should Contain    Your password is invalid!
 
 Login Failed - Username Not Found
     Input Credentials And Submit    tomholland    Password!

@@ -1,45 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.12.6 on win32)" generated="2025-07-28T18:28:52.820236" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.12.6 on win32)" generated="2025-07-28T19:30:51.797754" rpa="false" schemaversion="5">
 <suite id="s1" name="Test Login" source="F:\code\API\robot\tests\test_login.robot">
 <kw name="Open Login Page" owner="login" type="SETUP">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:53.042570" level="INFO">Opening browser 'chrome' to base url 'http://the-internet.herokuapp.com/login'.</msg>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-28T19:30:52.011318" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000259DEB20830&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-28T19:30:52.011318" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--guest</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-07-28T19:30:52.011318" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--no-first-run</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-07-28T19:30:52.011318" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-infobars</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-07-28T19:30:52.011318" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-extensions</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-07-28T19:30:52.012306" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-popup-blocking</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-07-28T19:30:52.012306" elapsed="0.000000"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2025-07-28T19:30:52.012306" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>Chrome</arg>
+<arg>options=${options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2025-07-28T19:30:52.012306" elapsed="1.312866"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-07-28T19:30:53.326170" level="INFO">Opening url 'http://the-internet.herokuapp.com/login'</msg>
 <arg>${LOGIN_URL}</arg>
-<arg>chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-07-28T18:28:53.042570" elapsed="4.991920"/>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-07-28T19:30:53.325172" elapsed="3.294155"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.034490" elapsed="0.032116"/>
+<status status="PASS" start="2025-07-28T19:30:56.619327" elapsed="0.023959"/>
 </kw>
-<status status="PASS" start="2025-07-28T18:28:53.041542" elapsed="5.025064"/>
+<status status="PASS" start="2025-07-28T19:30:52.010327" elapsed="4.632959"/>
 </kw>
 <test id="s1-t1" name="Login Success" line="8">
 <kw name="Input Credentials And Submit" owner="login">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:58.067603" level="INFO">Typing text 'tomsmith' into text field 'id=username'.</msg>
+<msg time="2025-07-28T19:30:56.644284" level="INFO">Typing text 'tomsmith' into text field 'id=username'.</msg>
 <arg>${USERNAME_FIELD}</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.067603" elapsed="0.073556"/>
+<status status="PASS" start="2025-07-28T19:30:56.644284" elapsed="0.078474"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:58.141159" level="INFO">Typing text 'SuperSecretPassword!' into text field 'id=password'.</msg>
+<msg time="2025-07-28T19:30:56.722758" level="INFO">Typing text 'SuperSecretPassword!' into text field 'id=password'.</msg>
 <arg>${PASSWORD_FIELD}</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.141159" elapsed="0.064248"/>
+<status status="PASS" start="2025-07-28T19:30:56.722758" elapsed="0.064911"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Login Page</arg>
+<arg>5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-07-28T19:30:56.787669" elapsed="0.008976"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:58.205407" level="INFO">Clicking button 'css=button.radius'.</msg>
+<msg time="2025-07-28T19:30:56.796645" level="INFO">Clicking button 'css=button.radius'.</msg>
 <arg>${LOGIN_BUTTON}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.205407" elapsed="0.586369"/>
+<status status="PASS" start="2025-07-28T19:30:56.796645" elapsed="0.056286"/>
 </kw>
 <arg>tomsmith</arg>
 <arg>SuperSecretPassword!</arg>
-<status status="PASS" start="2025-07-28T18:28:58.067603" elapsed="0.724173"/>
+<status status="PASS" start="2025-07-28T19:30:56.643286" elapsed="0.209645"/>
 </kw>
 <kw name="Flash Message Should Contain" owner="login">
 <kw name="Wait Until Element Contains" owner="SeleniumLibrary">
@@ -47,40 +102,40 @@
 <arg>${expected}</arg>
 <arg>timeout=5s</arg>
 <doc>Waits until the element ``locator`` contains ``text``.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.792773" elapsed="0.024833"/>
+<status status="PASS" start="2025-07-28T19:30:56.853930" elapsed="0.544847"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:58.826593" level="INFO">${flash} = You logged into a secure area!
+<msg time="2025-07-28T19:30:57.409130" level="INFO">${flash} = You logged into a secure area!
 ×</msg>
 <var>${flash}</var>
 <arg>${FLASH_MESSAGE}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.817606" elapsed="0.008987"/>
+<status status="PASS" start="2025-07-28T19:30:57.398777" elapsed="0.010353"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-07-28T18:28:58.826593" level="INFO">Flash Message is: You logged into a secure area!
+<msg time="2025-07-28T19:30:57.409130" level="INFO">Flash Message is: You logged into a secure area!
 ×</msg>
 <arg>Flash Message is: ${flash}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.826593" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:57.409130" elapsed="0.000000"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${flash}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.826593" elapsed="0.001018"/>
+<status status="PASS" start="2025-07-28T19:30:57.409130" elapsed="0.000000"/>
 </kw>
 <arg>You logged into a secure area!</arg>
-<status status="PASS" start="2025-07-28T18:28:58.792773" elapsed="0.034838"/>
+<status status="PASS" start="2025-07-28T19:30:56.853930" elapsed="0.555200"/>
 </kw>
 <kw name="Logout" owner="login">
-<kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:58.827611" level="INFO">Clicking link 'Logout'.</msg>
-<arg>Logout</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:58.827611" elapsed="0.587469"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-07-28T19:30:57.410137" level="INFO">Clicking element '//a[@href='/logout']'.</msg>
+<arg>${LOGOUT_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-28T19:30:57.410137" elapsed="0.568672"/>
 </kw>
-<status status="PASS" start="2025-07-28T18:28:58.827611" elapsed="0.587469"/>
+<status status="PASS" start="2025-07-28T19:30:57.410137" elapsed="0.568672"/>
 </kw>
 <kw name="Flash Message Should Contain" owner="login">
 <kw name="Wait Until Element Contains" owner="SeleniumLibrary">
@@ -88,164 +143,181 @@
 <arg>${expected}</arg>
 <arg>timeout=5s</arg>
 <doc>Waits until the element ``locator`` contains ``text``.</doc>
-<status status="PASS" start="2025-07-28T18:28:59.419068" elapsed="0.014961"/>
+<status status="PASS" start="2025-07-28T19:30:57.978809" elapsed="0.015779"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:59.446994" level="INFO">${flash} = You logged out of the secure area!
+<msg time="2025-07-28T19:30:58.007381" level="INFO">${flash} = You logged out of the secure area!
 ×</msg>
 <var>${flash}</var>
 <arg>${FLASH_MESSAGE}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:59.434029" elapsed="0.012965"/>
+<status status="PASS" start="2025-07-28T19:30:57.995607" elapsed="0.011774"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-07-28T18:28:59.447992" level="INFO">Flash Message is: You logged out of the secure area!
+<msg time="2025-07-28T19:30:58.007381" level="INFO">Flash Message is: You logged out of the secure area!
 ×</msg>
 <arg>Flash Message is: ${flash}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-07-28T18:28:59.447992" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:58.007381" elapsed="0.000000"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${flash}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-07-28T18:28:59.447992" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:58.007381" elapsed="0.000000"/>
 </kw>
 <arg>You logged out of the secure area!</arg>
-<status status="PASS" start="2025-07-28T18:28:59.418073" elapsed="0.029919"/>
+<status status="PASS" start="2025-07-28T19:30:57.978809" elapsed="0.028572"/>
 </kw>
-<status status="PASS" start="2025-07-28T18:28:58.066606" elapsed="1.382384"/>
+<status status="PASS" start="2025-07-28T19:30:56.643286" elapsed="1.365092"/>
 </test>
 <test id="s1-t2" name="Login Failed - Password Incorrect" line="14">
 <kw name="Input Credentials And Submit" owner="login">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:59.450983" level="INFO">Typing text 'tomsmith' into text field 'id=username'.</msg>
+<msg time="2025-07-28T19:30:58.009375" level="INFO">Typing text 'tomsmith' into text field 'id=username'.</msg>
 <arg>${USERNAME_FIELD}</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:59.449987" elapsed="0.044879"/>
+<status status="PASS" start="2025-07-28T19:30:58.009375" elapsed="0.050417"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:59.494866" level="INFO">Typing text 'Password!' into text field 'id=password'.</msg>
+<msg time="2025-07-28T19:30:58.059792" level="INFO">Typing text 'Password!' into text field 'id=password'.</msg>
 <arg>${PASSWORD_FIELD}</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:59.494866" elapsed="0.039812"/>
+<status status="PASS" start="2025-07-28T19:30:58.059792" elapsed="0.048564"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Login Page</arg>
+<arg>5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-07-28T19:30:58.108356" elapsed="0.005010"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:28:59.534678" level="INFO">Clicking button 'css=button.radius'.</msg>
+<msg time="2025-07-28T19:30:58.113366" level="INFO">Clicking button 'css=button.radius'.</msg>
 <arg>${LOGIN_BUTTON}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:28:59.534678" elapsed="0.041703"/>
+<status status="PASS" start="2025-07-28T19:30:58.113366" elapsed="0.042966"/>
 </kw>
 <arg>tomsmith</arg>
 <arg>Password!</arg>
-<status status="PASS" start="2025-07-28T18:28:59.449987" elapsed="0.126394"/>
+<status status="PASS" start="2025-07-28T19:30:58.009375" elapsed="0.146957"/>
 </kw>
 <kw name="Flash Message Should Contain" owner="login">
 <kw name="Wait Until Element Contains" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:29:04.750448" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-07-28T18:29:04.750448" level="FAIL">Element 'id=flash' did not get text 'Your password is invalid!' in 5 seconds.</msg>
 <arg>${FLASH_MESSAGE}</arg>
 <arg>${expected}</arg>
 <arg>timeout=5s</arg>
 <doc>Waits until the element ``locator`` contains ``text``.</doc>
-<status status="FAIL" start="2025-07-28T18:28:59.576981" elapsed="5.175462">Element 'id=flash' did not get text 'Your password is invalid!' in 5 seconds.</status>
+<status status="PASS" start="2025-07-28T19:30:58.156332" elapsed="0.736313"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-07-28T19:30:58.902620" level="INFO">${flash} = Your password is invalid!
+×</msg>
 <var>${flash}</var>
 <arg>${FLASH_MESSAGE}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-07-28T18:29:04.752443" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:58.892645" elapsed="0.009975"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
+<msg time="2025-07-28T19:30:58.902620" level="INFO">Flash Message is: Your password is invalid!
+×</msg>
 <arg>Flash Message is: ${flash}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-07-28T18:29:04.753440" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:58.902620" elapsed="0.000000"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${flash}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="NOT RUN" start="2025-07-28T18:29:04.753440" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:58.902620" elapsed="0.000000"/>
 </kw>
 <arg>Your password is invalid!</arg>
-<status status="FAIL" start="2025-07-28T18:28:59.576981" elapsed="5.176459">Element 'id=flash' did not get text 'Your password is invalid!' in 5 seconds.</status>
+<status status="PASS" start="2025-07-28T19:30:58.156332" elapsed="0.746288"/>
 </kw>
-<status status="FAIL" start="2025-07-28T18:28:59.448990" elapsed="5.305450">Element 'id=flash' did not get text 'Your password is invalid!' in 5 seconds.</status>
+<status status="PASS" start="2025-07-28T19:30:58.008378" elapsed="0.895239"/>
 </test>
 <test id="s1-t3" name="Login Failed - Username Not Found" line="18">
 <kw name="Input Credentials And Submit" owner="login">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:29:04.755435" level="INFO">Typing text 'tomholland' into text field 'id=username'.</msg>
+<msg time="2025-07-28T19:30:58.904577" level="INFO">Typing text 'tomholland' into text field 'id=username'.</msg>
 <arg>${USERNAME_FIELD}</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:29:04.755435" elapsed="0.065823"/>
+<status status="PASS" start="2025-07-28T19:30:58.904577" elapsed="0.059855"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:29:04.822258" level="INFO">Typing text 'Password!' into text field 'id=password'.</msg>
+<msg time="2025-07-28T19:30:58.964432" level="INFO">Typing text 'Password!' into text field 'id=password'.</msg>
 <arg>${PASSWORD_FIELD}</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:29:04.821258" elapsed="0.064329"/>
+<status status="PASS" start="2025-07-28T19:30:58.964432" elapsed="0.046730"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Login Page</arg>
+<arg>5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-07-28T19:30:59.011162" elapsed="0.004992"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:29:04.886630" level="INFO">Clicking button 'css=button.radius'.</msg>
+<msg time="2025-07-28T19:30:59.017145" level="INFO">Clicking button 'css=button.radius'.</msg>
 <arg>${LOGIN_BUTTON}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-28T18:29:04.886630" elapsed="0.059835"/>
+<status status="PASS" start="2025-07-28T19:30:59.017145" elapsed="0.039945"/>
 </kw>
 <arg>tomholland</arg>
 <arg>Password!</arg>
-<status status="PASS" start="2025-07-28T18:29:04.755435" elapsed="0.191030"/>
+<status status="PASS" start="2025-07-28T19:30:58.904577" elapsed="0.152513"/>
 </kw>
 <kw name="Flash Message Should Contain" owner="login">
 <kw name="Wait Until Element Contains" owner="SeleniumLibrary">
-<msg time="2025-07-28T18:29:10.103497" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-11.png"&gt;&lt;img src="selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-07-28T18:29:10.103497" level="FAIL">Element 'id=flash' did not get text 'Your username is invalid!' in 5 seconds.</msg>
+<msg time="2025-07-28T19:30:59.591405" level="INFO">Suppressing StaleElementReferenceException from Selenium.</msg>
 <arg>${FLASH_MESSAGE}</arg>
 <arg>${expected}</arg>
 <arg>timeout=5s</arg>
 <doc>Waits until the element ``locator`` contains ``text``.</doc>
-<status status="FAIL" start="2025-07-28T18:29:04.947463" elapsed="5.156034">Element 'id=flash' did not get text 'Your username is invalid!' in 5 seconds.</status>
+<status status="PASS" start="2025-07-28T19:30:59.058112" elapsed="0.744880"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-07-28T19:30:59.812968" level="INFO">${flash} = Your username is invalid!
+×</msg>
 <var>${flash}</var>
 <arg>${FLASH_MESSAGE}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-07-28T18:29:10.103497" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:59.803991" elapsed="0.008977"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
+<msg time="2025-07-28T19:30:59.813965" level="INFO">Flash Message is: Your username is invalid!
+×</msg>
 <arg>Flash Message is: ${flash}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-07-28T18:29:10.104493" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:59.813965" elapsed="0.000000"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${flash}</arg>
 <arg>${expected}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="NOT RUN" start="2025-07-28T18:29:10.104493" elapsed="0.000000"/>
+<status status="PASS" start="2025-07-28T19:30:59.813965" elapsed="0.000000"/>
 </kw>
 <arg>Your username is invalid!</arg>
-<status status="FAIL" start="2025-07-28T18:29:04.947463" elapsed="5.157030">Element 'id=flash' did not get text 'Your username is invalid!' in 5 seconds.</status>
+<status status="PASS" start="2025-07-28T19:30:59.058112" elapsed="0.755853"/>
 </kw>
-<status status="FAIL" start="2025-07-28T18:29:04.754440" elapsed="5.350053">Element 'id=flash' did not get text 'Your username is invalid!' in 5 seconds.</status>
+<status status="PASS" start="2025-07-28T19:30:58.904005" elapsed="0.910522"/>
 </test>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-07-28T18:29:10.105491" elapsed="2.139278"/>
+<status status="PASS" start="2025-07-28T19:30:59.814975" elapsed="2.125619"/>
 </kw>
-<status status="FAIL" start="2025-07-28T18:28:52.821234" elapsed="19.423535"/>
+<status status="PASS" start="2025-07-28T19:30:51.799749" elapsed="10.140845"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="2" skip="0">All Tests</stat>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Test Login" id="s1" pass="1" fail="2" skip="0">Test Login</stat>
+<stat name="Test Login" id="s1" pass="3" fail="0" skip="0">Test Login</stat>
 </suite>
 </statistics>
 <errors>

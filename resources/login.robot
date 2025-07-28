@@ -9,16 +9,21 @@ ${USERNAME_FIELD}   id=username
 ${PASSWORD_FIELD}   id=password
 ${LOGIN_BUTTON}     css=button.radius
 ${FLASH_MESSAGE}    id=flash
+${LOGOUT_BUTTON}    //a[@href='/logout']
 
 *** Keywords ***
 Open Login Page
-    Open Browser    ${LOGIN_URL}    chrome    options=add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${options}    add_argument    --guest  #แก้บัค Popup save password ใน Chrome ชอบแจ้งขึ้่นมาทำให้ DOM ผิด
+    Create WebDriver    Chrome    options=${options}
+    Go To    ${LOGIN_URL}
     Maximize Browser Window
 
 Input Credentials And Submit
     [Arguments]    ${username}    ${password}
     Input Text    ${USERNAME_FIELD}    ${username}
     Input Text    ${PASSWORD_FIELD}    ${password}
+    Wait Until Page Contains    Login Page    5s
     Click Button  ${LOGIN_BUTTON}
 
 Flash Message Should Contain
@@ -29,4 +34,4 @@ Flash Message Should Contain
     Should Contain    ${flash}    ${expected}
 
 Logout
-    Click Link    Logout
+    Click Element    ${LOGOUT_BUTTON}
