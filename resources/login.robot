@@ -12,7 +12,7 @@ ${FLASH_MESSAGE}    id=flash
 
 *** Keywords ***
 Open Login Page
-    Open Browser    ${LOGIN_URL}    chrome
+    Open Browser    ${LOGIN_URL}    chrome    options=add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
     Maximize Browser Window
 
 Input Credentials And Submit

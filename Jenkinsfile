@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        ROBOT_OPTIONS = '--variable BROWSER:chrome --variable HEADLESS:True'
+        ROBOT_OPTIONS = '--variable BROWSER:chrome --variable HEADLESS:True --variable EXTRA_OPTS:--disable-blink-features=AutomationControlled'
         PATH = "${env.WORKSPACE}\\chromedriver;${env.PATH}"
     }
 
