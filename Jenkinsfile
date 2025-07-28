@@ -14,9 +14,9 @@ pipeline {
 
         stage('Setup Python & Install Dependencies') {
             steps {
-                sh '''
-                    python -m venv ${VENV}
-                    . ${VENV}/bin/activate
+                bat '''
+                    python -m venv %VENV%
+                    call %VENV%\\Scripts\\activate.bat
                     pip install -r requirements.txt
                 '''
             }
@@ -24,8 +24,8 @@ pipeline {
 
         stage('Run Robot Tests') {
             steps {
-                sh '''
-                    . ${VENV}/bin/activate
+                bat '''
+                    call %VENV%\\Scripts\\activate.bat
                     robot -d results tests/
                 '''
             }
